@@ -8,8 +8,8 @@ import Contacts from "./components/Contacts.jsx";
 function App() {
     return (
         <>
-            <About/>
             <NavBar/>
+            <About/>
             <AddSecret/>
             <SecretPage/>
             <Contacts/>

@@ -13,7 +13,7 @@ const SecretPage = () => {
         const response = await fetch("/secret/" + password, {
             method: "GET",
             headers: {
-                'Content-type': 'application/json',
+                'Accept':'application/json'
             }
         })
         if (response.status === 200) {
@@ -37,7 +37,7 @@ const SecretPage = () => {
                 <button className={"submit-button"} type="button" onClick={getSecret}>Get Secret</button>
             </div>
             <div className={"secret-box"}>
-                <div className={"secret"}>{secret}</div>
+                <div className={"secret-card"}><p className={"secret-text"}>{secret}</p></div>
                 <button className={"submit-button"}> Share Secret</button>
             </div>
         </div>

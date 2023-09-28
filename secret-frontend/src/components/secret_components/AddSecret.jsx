@@ -10,8 +10,22 @@ const AddSecret = () => {
 
     })
 
-    const handleSubmit = () => {
-        //TODO implement what will happen after submit
+    const handleSubmit = async () => {
+        const response = await fetch(`/secret`, {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                code: secretFormData.code,
+                secret: secretFormData.secret,
+                email: secretFormData.email,
+                expDate: secretFormData.expDate
+            })
+        });
+        if (response.status === 200) {
+            alert('Secret Added');
+        } else {
+            alert('Something went wrong');
+        }
     }
 
     const handleInputChange = event => {
@@ -37,7 +51,7 @@ const AddSecret = () => {
                 </div>
 
                 <div className={"form-element"}>
-                    <label className={"email-label label"} htmlFor="email">email:</label>
+                    <label className={"email-label label"} htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email"
                            value={secretFormData.email}
                            onChange={handleInputChange} />
