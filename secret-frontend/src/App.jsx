@@ -1,9 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+
+import NavBar from "./components/NavBar.jsx";
+import AddSecret from "./components/secret_components/AddSecret.jsx";
+import SecretPage from "./components/secret_components/SecretPage.jsx";
+import About from "./components/About.jsx";
+import Contacts from "./components/Contacts.jsx";
 
 function App() {
     return (
-        <h1>Your secret</h1>
+        <>
+            <NavBar/>
+            <About/>
+            <AddSecret/>
+            <SecretPage/>
+            <Contacts/>
+        </>
     )
 }
 
