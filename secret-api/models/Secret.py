@@ -1,7 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
+from utils.project_config import orm
 from sqlalchemy import Column, String, Date, Boolean
 
-orm = SQLAlchemy()
+
 
 
 class Secret(orm.Model):
