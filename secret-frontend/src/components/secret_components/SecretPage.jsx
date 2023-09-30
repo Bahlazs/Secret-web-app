@@ -1,4 +1,4 @@
-import "E:\\projects\\homework\\allmyles-ho\\Secret-server\\secret-frontend\\src\\stylesheets\\SecretPage.css"
+import '../../stylesheets/SecretPage.css'
 import {useState} from "react";
 
 const SecretPage = () => {

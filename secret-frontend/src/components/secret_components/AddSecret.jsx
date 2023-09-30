@@ -1,5 +1,5 @@
 import {useState} from "react";
-import "E:\\projects\\homework\\allmyles-ho\\Secret-server\\secret-frontend\\src\\stylesheets\\AddSecret.css"
+import "../../stylesheets/AddSecret.css"
 
 const AddSecret = () => {
     const [secretFormData, setSecretFormData] = useState({
