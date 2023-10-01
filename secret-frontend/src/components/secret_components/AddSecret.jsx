@@ -10,7 +10,8 @@ const AddSecret = () => {
 
     })
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         const response = await fetch(`/secret`, {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
@@ -63,7 +64,7 @@ const AddSecret = () => {
                            value={secretFormData.expDate}
                            onChange={handleInputChange} />
                 </div>
-                <input className={"submit-button form-element"} type={"submit"} value={"Add Secret"}/>
+                <input className={"submit-button form-element"} type={"submit"} value={"Add Secret"} />
             </form>
         </div>
     )

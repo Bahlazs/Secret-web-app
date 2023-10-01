@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from services.EmailService import EmailService
 from services.SecretService import SecretService
 from repositorties.SecretRepository import SecretRepository
 from utils import response_creator
@@ -12,6 +13,10 @@ def add_new_secret():
     secret_repository = SecretRepository()
     secret_data = request.get_json()
     secret = secret_service.build_secret(secret_data)
+    email = secret.email
+    hash_id = secret.hash_id
+    email_service = EmailService(email, hash_id)
+    email_service.send_email()
     secret_repository.save_secret(secret)
     accept_header = request.headers.get('Accept')
     message = {
