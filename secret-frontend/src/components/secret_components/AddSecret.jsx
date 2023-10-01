@@ -3,9 +3,9 @@ import "../../stylesheets/AddSecret.css"
 
 const AddSecret = () => {
     const [secretFormData, setSecretFormData] = useState({
-        code:"",
         secret:"",
         email:"",
+        views:0,
         expDate:""
 
     })
@@ -15,16 +15,16 @@ const AddSecret = () => {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                code: secretFormData.code,
                 secret: secretFormData.secret,
                 email: secretFormData.email,
+                views: secretFormData.views,
                 expDate: secretFormData.expDate
             })
         });
         if (response.status === 200) {
             alert('Secret Added');
         } else {
-            alert('Something went wrong');
+            console.log('Something went wrong');
         }
     }
 
@@ -36,13 +36,6 @@ const AddSecret = () => {
         <div className={"add-secret"}>
             <h1>Add secret here</h1>
             <form className={"add-secret-form"} onSubmit={handleSubmit}>
-                <div className={"form-element"}>
-                    <label className={"code-label label"} htmlFor="code">Code to be hashed:</label>
-                    <input type="password" id="code" name="code"
-                           value={secretFormData.code}
-                           onChange={handleInputChange} />
-                </div>
-
                 <div className={"form-element"}>
                     <label className={"secret-label label" } htmlFor="secret">Your secret:</label>
                     <textarea cols={40} rows={20} id="secret" name="secret"
@@ -58,8 +51,15 @@ const AddSecret = () => {
                 </div>
 
                 <div className={"form-element"}>
+                    <label className={"code-label label"} htmlFor="views">How much times the secret can be viewed :</label>
+                    <input type="number" id="" name="views"
+                           value={secretFormData.views}
+                           onChange={handleInputChange} />
+                </div>
+
+                <div className={"form-element"}>
                     <label className={"exp-date-label label"} htmlFor="exp-date">Expiration Date:</label>
-                    <input type="date" id="exp-date" name="expDate"
+                    <input type="datetime-local" id="exp-date" name="expDate"
                            value={secretFormData.expDate}
                            onChange={handleInputChange} />
                 </div>

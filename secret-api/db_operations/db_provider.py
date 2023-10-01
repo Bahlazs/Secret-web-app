@@ -19,4 +19,5 @@ engine = create_engine(url_object, echo=True)
 db = SQLAlchemy()
 
 
-
+def get_db():
+    return db

@@ -17,7 +17,9 @@ const SecretPage = () => {
             }
         })
         if (response.status === 200) {
-            setSecret(response.json())
+            const data = await response.json()
+            console .log(data)
+            setSecret(data["secret"])
         } else {
             alert("something went wrong")
             setSecret("No Secret")
