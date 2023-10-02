@@ -1,14 +1,14 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv, find_dotenv
 from blueprints.secret.secret_bp import secret_blueprint
-from db_operations.db_provider import db
+from db_operations.db_provider import get_db
 
 app = Flask(__name__)
 app.register_blueprint(secret_blueprint)
 app.config["SQLALCHEMY_DATABASE_URI"
 ] = "postgresql://postgres:secret-test-pw@db.ocscrttarmteeesaekdy.supabase.co:5432/postgres"
 load_dotenv(find_dotenv(".env"))
+db = get_db()
 db.init_app(app)
 
 

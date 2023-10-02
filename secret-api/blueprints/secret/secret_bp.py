@@ -31,6 +31,6 @@ def get_secret(hash_id):
     secret = secret_repository.find_secret_by_hash(hash_id)
     accept_header = request.headers.get('Accept')
     secret_response = {
-        "secret": secret.body
+        "secret": secret.secret_hash_id
     }
     return response_creator.generate_response("secret", accept_header, secret_response)

@@ -11,14 +11,15 @@ class EmailService:
         self.email_to = email_to
         self.password = dotenv.dotenv_values(".env").get("EMAIL_PASSWORD")
         self.subject = "Secret Id"
-        self.body = secret_id
+        self.secret_hash_id = secret_id
 
     def create_email(self):
         email = EmailMessage()
         email['From'] = self.sender_email
         email['To'] = self.email_to
         email['Subject'] = self.subject
-        email.set_content(self.body)
+        message = f"Your secret's id: {self.secret_hash_id}"
+        email.set_content(message)
         return email
 
     def send_email(self):
