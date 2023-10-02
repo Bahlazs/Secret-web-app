@@ -29,7 +29,7 @@ body {
 }
 
 
-.submit-button {
+.app-button {
   display: inline-block;
   outline: none;
   cursor: pointer;
@@ -44,7 +44,7 @@ body {
   color: var(--main-color-dark);
 }
 
-.submit-button:hover {
+.app-button:hover {
   background-color: var(--main-color-dark);
   color: var(--main-color-light);
 

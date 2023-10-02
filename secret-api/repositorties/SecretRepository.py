@@ -13,9 +13,8 @@ class SecretRepository:
 
     def find_secret_by_hash(self, hash_id):
         secret = self.db.session.query(Secret).filter_by(hash_id=hash_id).first()
-        print(secret)
-        secret.remaining_views -= 1
-        self.db.session.commit()
         return secret
 
-
+    def find_secret_by_share_id(self, share_id):
+        secret = self.db.session.query(Secret).filter_by(share_id=share_id).first()
+        return secret

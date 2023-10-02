@@ -1,0 +1,43 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import '../../stylesheets/SecretDisplayPage.css';
+
+const SecretDisplayPage = () => {
+    const { shareId } = useParams();
+    const [secret, setSecret] = useState("Loading...");
+
+    useEffect(() => {
+        async function fetchSecret() {
+            try {
+                const response = await fetch(`/secret/share/${shareId}`, {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (response.status === 200) {
+                    const data = await response.json();
+                    setSecret(data["secret"]);
+                } else {
+                    setSecret("Secret not found");
+                }
+            } catch (error) {
+                console.error("Error fetching secret:", error);
+                setSecret("Error fetching secret");
+            }
+        }
+
+        fetchSecret();
+    }, [shareId]);
+
+    return (
+        <div className="secret-display-page">
+            <h1>Secret Display Page</h1>
+            <div className={"secret-box"}>
+                <div className={"secret-card"}><p className={"secret-text"}>{secret}</p></div>
+            </div>
+        </div>
+    );
+};
+
+export default SecretDisplayPage;

@@ -14,7 +14,10 @@ const AddSecret = () => {
         event.preventDefault()
         const response = await fetch(`/secret`, {
             method: 'POST',
-            headers: {'Content-type': 'application/json'},
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
             body: JSON.stringify({
                 secret: secretFormData.secret,
                 email: secretFormData.email,
@@ -64,7 +67,7 @@ const AddSecret = () => {
                            value={secretFormData.expDate}
                            onChange={handleInputChange} />
                 </div>
-                <input className={"submit-button form-element"} type={"submit"} value={"Add Secret"} />
+                <input className={"app-button form-element"} type={"submit"} value={"Add Secret"} />
             </form>
         </div>
     )
