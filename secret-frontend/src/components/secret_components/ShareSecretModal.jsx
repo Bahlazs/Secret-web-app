@@ -1,13 +1,12 @@
-import "../../stylesheets/ShareForm.css"
 import {useState} from 'react';
+import PropTypes from 'prop-types';
+import "../../stylesheets/ShareForm.css"
 
 const ShareSecretModal = ({onClose, onShare}) => {
     const [shareSecretFormData, setShareSecretFormData] = useState({
         name: "",
         subject: "",
         email: "",
-
-
     })
 
     const handleInputChange = event => {
@@ -47,6 +46,11 @@ const ShareSecretModal = ({onClose, onShare}) => {
             </form>
         </div>
     );
+};
+
+ShareSecretModal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    onShare: PropTypes.func.isRequired,
 };
 
 export default ShareSecretModal;
