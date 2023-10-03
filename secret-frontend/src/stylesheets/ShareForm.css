@@ -1,0 +1,24 @@
+.add-secret-form {
+    max-width: 80vw;
+    margin: 1rem;
+    padding: 1rem;
+    color: var(--main-color-light);
+    background-color: var(--dark-accent-grey);
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px var(--main-color-dark);
+}
+
+.form-element {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin: 1rem;
+
+}
+
+.modal-button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem
+}

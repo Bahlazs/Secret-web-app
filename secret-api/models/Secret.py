@@ -12,6 +12,6 @@ class Secret(db.Model):
     exp_date = Column(DateTime(timezone=True))
     remaining_views = Column(Integer)
     email = Column(String(255))
-    secret_url = Column(String(255), nullable=True)
+    share_id = Column(String(255), nullable=True)
 
 

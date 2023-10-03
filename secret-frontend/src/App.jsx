@@ -1,18 +1,18 @@
-
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import NavBar from "./components/NavBar.jsx";
-import AddSecret from "./components/secret_components/AddSecret.jsx";
-import SecretPage from "./components/secret_components/SecretPage.jsx";
-import About from "./components/About.jsx";
-import Contacts from "./components/Contacts.jsx";
+import MainPage from "./components/MainPage.jsx";
+import SecretDisplayPage from './components/secret_components/SecretDisplayPage.jsx'; // Import the new component
 
 function App() {
     return (
         <>
-            <NavBar/>
-            <About/>
-            <AddSecret/>
-            <SecretPage/>
-            <Contacts/>
+            <Router>
+
+                <Routes>
+                    <Route path={"/"} Component={MainPage}/>
+                    <Route path="/share-secret/:shareId" Component={SecretDisplayPage}/>
+                </Routes>
+            </Router>
         </>
     )
 }

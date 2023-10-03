@@ -1,7 +1,6 @@
-from db_provider import engine, db
+from db_provider import engine
 from sqlalchemy import Table, Column, String, MetaData, DateTime, Integer
 from sqlalchemy.sql import func
-
 
 def create_tables():
     meta = MetaData()
@@ -14,7 +13,7 @@ def create_tables():
         Column("created", DateTime(timezone=True), server_default=func.now()),
         Column("remaining_views", Integer),
         Column('email', String),
-        Column('secret_url', String, nullable=True)
+        Column('share_id', String, nullable=True)
     )
     meta.create_all(bind=engine)
 
