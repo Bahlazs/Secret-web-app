@@ -9,7 +9,7 @@ SQLAlchemy==2.0.21
 flask-marshmallow==0.14.0
 flask_sqlalchemy
 marshmallow-sqlalchemy==0.24.1
-typing-extensions==4.8.0
+typing-extensions==4.7.1
 greenlet==2.0.2
 gunicorn
 pip~=23.2.1
