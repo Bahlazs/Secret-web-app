@@ -9,7 +9,7 @@ const SecretDisplayPage = () => {
     useEffect(() => {
         async function fetchSecret() {
             try {
-                const response = await fetch(`/secret/share/${shareId}`, {
+                const response = await fetch(`https://secret-server-qa3r.onrender.com/secret/share/${shareId}`, {
                     method: "GET",
                     headers: {
                         'Accept': 'application/json'

@@ -22,7 +22,7 @@ const ShareSecretPage = ({ secretId }) => {
     const shareSecret = async () => {
         const randomId = uuidv4();
 
-        const response = await fetch("secret/share", {
+        const response = await fetch("https://secret-server-qa3r.onrender.com/secret/share", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

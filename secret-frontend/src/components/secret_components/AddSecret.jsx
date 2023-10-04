@@ -14,7 +14,7 @@ const AddSecret = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const response = await fetch(`/secret`, {
+        const response = await fetch(`https://secret-server-qa3r.onrender.com/secret`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

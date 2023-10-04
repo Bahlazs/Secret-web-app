@@ -30,4 +30,5 @@ class EmailService:
         return f"Your secrets id: {id_to_send}"
 
     def generate_shared_secret_message(self, id_to_send, name):
-        return f"A secret was shared with you by {name} on : http://localhost:5173/share-secret/{id_to_send}"
+        return f"""A secret was shared with you by {name} 
+                on : https://secret-server-qa3r.onrender.com/share-secret/{id_to_send}"""

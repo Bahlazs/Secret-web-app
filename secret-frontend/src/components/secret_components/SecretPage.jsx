@@ -16,7 +16,7 @@ const SecretPage = ({getSecretHashId}) => {
     const getSecret = async () => {
         setSecret("LOADING")
         try {
-            const response = await fetch(`/secret/${secretHashId}`, {
+            const response = await fetch(`https://secret-server-qa3r.onrender.com/secret/${secretHashId}`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json'
