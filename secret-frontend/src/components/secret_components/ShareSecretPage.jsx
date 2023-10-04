@@ -1,26 +1,63 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
-import "../../stylesheets/ShareForm.css"
+import "../../stylesheets/ShareSecretPage.css"
+import {v4 as uuidv4} from "uuid";
+import {Link, useNavigate} from "react-router-dom";
+import useToast from "../../custom_hooks/UseToast.jsx";
 
-const ShareSecretModal = ({onClose, onShare}) => {
+const ShareSecretPage = ({ secretId }) => {
+    const navigate = useNavigate()
+    const { showToast, toastElement } = useToast();
     const [shareSecretFormData, setShareSecretFormData] = useState({
         name: "",
         subject: "",
         email: "",
     })
 
+    const returnHome = () => {
+        setTimeout(()=>{
+            navigate("/")
+        }, 3000)
+    }
+    const shareSecret = async () => {
+        const randomId = uuidv4();
+
+        const response = await fetch("secret/share", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                hashId: secretId,
+                name: shareSecretFormData.name,
+                subject: shareSecretFormData.subject,
+                email: shareSecretFormData.email,
+                shareId: randomId
+            })
+        });
+        const data = await response.json()
+        if (response.status === 200) {
+            showToast(data["message"])
+            returnHome()
+        } else {
+            alert("Failed to share secret.");
+            console.error(data["error"])
+        }
+    };
     const handleInputChange = event => {
         setShareSecretFormData({...shareSecretFormData, [event.target.name]: event.target.value});
     };
     const handleShareClick = (event) => {
         event.preventDefault()
-        onShare(shareSecretFormData);
+        shareSecret();
     };
 
     return (
-        <div className="share-secret-modal">
+        <div className="share-secret-page">
+            {toastElement}
             <h2>Share Secret</h2>
-            <form className={"add-secret-form"} onSubmit={handleShareClick}>
+            <form className={"share-secret-form"} onSubmit={handleShareClick}>
                 <div className={"form-element"}>
                     <label className={"email-label label"} htmlFor="name">Your name:</label>
                     <input type="text" id="name" name="name"
@@ -41,16 +78,15 @@ const ShareSecretModal = ({onClose, onShare}) => {
                 </div>
                 <div className={"modal-button-container"}>
                     <button className={"app-button"} type={"submit"}>Share</button>
-                    <button className={"app-button"} onClick={onClose}>Close</button>
+                    <Link to={"/"} className={"app-button"} >Back</Link>
                 </div>
             </form>
         </div>
     );
 };
 
-ShareSecretModal.propTypes = {
-    onClose: PropTypes.func.isRequired,
-    onShare: PropTypes.func.isRequired,
-};
+ShareSecretPage.propTypes = {
+    secretId: PropTypes.string
+}
 
-export default ShareSecretModal;
+export default ShareSecretPage;

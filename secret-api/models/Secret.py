@@ -8,8 +8,8 @@ class Secret(db.Model):
 
     hash_id = Column(String(255), primary_key=True)
     body = Column(String(700))
-    created = Column(DateTime(timezone=True), server_default=func.now())
-    exp_date = Column(DateTime(timezone=True))
+    created = Column(DateTime(timezone=False), server_default=func.now())
+    exp_date = Column(DateTime(timezone=False), nullable=True)
     remaining_views = Column(Integer)
     email = Column(String(255))
     share_id = Column(String(255), nullable=True)

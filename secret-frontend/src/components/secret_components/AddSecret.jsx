@@ -1,12 +1,14 @@
 import {useState} from "react";
 import "../../stylesheets/AddSecret.css"
+import useToast from "../../custom_hooks/UseToast.jsx";
 
 const AddSecret = () => {
+    const { showToast, toastElement } = useToast();
     const [secretFormData, setSecretFormData] = useState({
         secret:"",
         email:"",
-        views:0,
-        expDate:""
+        expireAfterViews:0,
+        expireAfter:0
 
     })
 
@@ -21,14 +23,23 @@ const AddSecret = () => {
             body: JSON.stringify({
                 secret: secretFormData.secret,
                 email: secretFormData.email,
-                views: secretFormData.views,
-                expDate: secretFormData.expDate
+                expireAfterViews: secretFormData.expireAfterViews,
+                expireAfter: secretFormData.expireAfter
             })
         });
+        const data = await response.json()
         if (response.status === 200) {
-            alert('Secret Added');
+            showToast('Secret Added');
+            console.log(data["message"])
         } else {
-            console.log('Something went wrong');
+            alert("invalid, input")
+            console.error(data["error"]);
+        }
+    }
+
+    const handleExpireAfterMinuteAndViewChange = event => {
+        if (event.target.value >= 0) {
+            setSecretFormData({ ...secretFormData, [event.target.name]: event.target.value })
         }
     }
 
@@ -38,6 +49,7 @@ const AddSecret = () => {
 
     return (
         <div className={"add-secret"}>
+            {toastElement}
             <h1>Add secret here</h1>
             <form className={"add-secret-form"} onSubmit={handleSubmit}>
                 <div className={"form-element"}>
@@ -56,16 +68,16 @@ const AddSecret = () => {
 
                 <div className={"form-element"}>
                     <label className={"code-label label"} htmlFor="views">How much times the secret can be viewed :</label>
-                    <input type="number" id="" name="views"
-                           value={secretFormData.views}
-                           onChange={handleInputChange} />
+                    <input type="number" id="views" name="expireAfterViews"
+                           value={secretFormData.expireAfterViews}
+                           onChange={handleExpireAfterMinuteAndViewChange} />
                 </div>
 
                 <div className={"form-element"}>
                     <label className={"exp-date-label label"} htmlFor="exp-date">Expiration Date:</label>
-                    <input type="datetime-local" id="exp-date" name="expDate"
-                           value={secretFormData.expDate}
-                           onChange={handleInputChange} />
+                    <input type="number" id="exp-date" name="expireAfter"
+                           value={secretFormData.expireAfter}
+                           onChange={handleExpireAfterMinuteAndViewChange} />
                 </div>
                 <input className={"app-button form-element"} type={"submit"} value={"Add Secret"} />
             </form>

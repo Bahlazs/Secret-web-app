@@ -23,6 +23,11 @@
     color: var(--main-color-light);
 }
 
+.navbar a{
+    text-decoration: none;
+    color: var(--main-color-light);
+}
+
 .navbar-menu {
     display: flex;
     gap: 0.5rem;
