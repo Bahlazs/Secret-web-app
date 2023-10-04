@@ -1,4 +1,4 @@
-import dotenv
+import os
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, URL
 import logging
@@ -6,13 +6,13 @@ import logging
 logging.basicConfig()
 logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 
-data = dotenv.dotenv_values(".env")
+
 url_object = URL.create(
     "postgresql",
-    username=data.get("PSQL_USER_NAME"),
-    password=data.get("PSQL_PASSWORD"),
-    host=data.get("PSQL_HOST"),
-    database=data.get("PSQL_DB_NAME"),
+    username=os.environ.get('PSQL_USER_NAME'),
+    password=os.environ.get('PSQL_PASSWORD'),
+    host=os.environ.get('PSQL_HOST'),
+    database=os.environ.get('PSQL_DB_NAME'),
 )
 
 engine = create_engine(url_object, echo=True)

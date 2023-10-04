@@ -42,6 +42,7 @@ body {
   transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
   background: var(--ligth-accent-yellow);
   color: var(--main-color-dark);
+  text-decoration: none;
 }
 
 .app-button:hover {

@@ -1,4 +1,4 @@
-import dotenv
+import os
 import smtplib
 import ssl
 from email.message import EmailMessage
@@ -6,24 +6,28 @@ from email.message import EmailMessage
 
 class EmailService:
 
-    def __init__(self, email_to, secret_id):
-        self.sender_email = "it.bahzsi@gmail.com"
-        self.email_to = email_to
-        self.password = dotenv.dotenv_values(".env").get("EMAIL_PASSWORD")
-        self.id_to_send = secret_id
+    def __init__(self):
+        self.sender_email = os.environ.get("EMAIL_ADDRESS")
+        self.password = os.environ.get("EMAIL_PASSWORD")
 
-    def create_email(self, message, subject):
+
+    def create_email(self, message, receiver_email, subject):
         email = EmailMessage()
         email['From'] = self.sender_email
-        email['To'] = self.email_to
+        email['To'] = receiver_email
         email['Subject'] = subject
-        message = f"{message}{self.id_to_send}"
         email.set_content(message)
         return email
 
-    def send_email(self, message, subject="Your Secret"):
+    def send_email(self, message, receiver_email, subject="Your Secret"):
         context = ssl.create_default_context()
-        email = self.create_email(message, subject)
+        email = self.create_email(message, receiver_email, subject)
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
             smtp.login(self.sender_email, self.password)
-            smtp.sendmail(self.sender_email, self.email_to, email.as_string())
+            smtp.sendmail(self.sender_email, receiver_email, email.as_string())
+
+    def generate_secret_id_message(self, id_to_send):
+        return f"Your secrets id: {id_to_send}"
+
+    def generate_shared_secret_message(self, id_to_send, name):
+        return f"A secret was shared with you by {name} on : http://localhost:5173/share-secret/{id_to_send}"

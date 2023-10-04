@@ -15,11 +15,11 @@ const SecretDisplayPage = () => {
                         'Accept': 'application/json'
                     }
                 });
+                const data = await response.json();
                 if (response.status === 200) {
-                    const data = await response.json();
-                    setSecret(data["secret"]);
+                    setSecret(data["text"]);
                 } else {
-                    setSecret("Secret not found");
+                    console.error(data["error"]);
                 }
             } catch (error) {
                 console.error("Error fetching secret:", error);
