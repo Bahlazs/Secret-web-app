@@ -1,4 +1,4 @@
-flask==2.3.3
+Flask~=2.3.3
 Jinja2>=3.1.2
 psycopg2==2.9.6
 itsdangerous==2.1.2
@@ -11,7 +11,7 @@ flask_sqlalchemy
 marshmallow-sqlalchemy==0.24.1
 typing-extensions==4.8.0
 greenlet==2.0.2
-
+gunicorn
 pip~=23.2.1
 cryptography~=41.0.1
 blinker~=1.6.2
@@ -19,3 +19,5 @@ pycparser~=2.21
 setuptools~=68.0.0
 zipp~=3.15.0
 python-dotenv~=1.0.0
+pytz~=2023.3.post1
+flask-cors~=4.0.0
