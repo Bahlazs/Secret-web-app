@@ -31,4 +31,4 @@ class EmailService:
 
     def generate_shared_secret_message(self, id_to_send, name):
         return f"""A secret was shared with you by {name} 
-                on : https://your-secret..com/share-secret/{id_to_send}"""
+                on : https://your-secret-app.netlify.app//share-secret/{id_to_send}"""
