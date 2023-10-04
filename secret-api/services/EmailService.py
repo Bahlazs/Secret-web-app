@@ -10,7 +10,6 @@ class EmailService:
         self.sender_email = os.environ.get("EMAIL_ADDRESS")
         self.password = os.environ.get("EMAIL_PASSWORD")
 
-
     def create_email(self, message, receiver_email, subject):
         email = EmailMessage()
         email['From'] = self.sender_email
@@ -31,4 +30,4 @@ class EmailService:
 
     def generate_shared_secret_message(self, id_to_send, name):
         return f"""A secret was shared with you by {name} 
-                on : https://your-secret-app.netlify.app//share-secret/{id_to_send}"""
+                on : https://your-secret-app.netlify.app/share-secret/{id_to_send}"""
