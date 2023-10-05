@@ -3,7 +3,6 @@ from db_operations import db_provider
 from models.Secret import Secret
 from datetime import datetime, timedelta
 import time
-import pytz
 
 
 class SecretService:
@@ -41,10 +40,8 @@ class SecretService:
             current_timestamp = int(time.time())
             if expire_timestamp < current_timestamp:
                 return False
-            else:
-                return True
-        else:
-            return True
+
+        return True
 
     def has_secret_views(self, remaining_views):
         if remaining_views == 0:

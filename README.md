@@ -13,6 +13,9 @@
     - [Code snippets](#code-snippets-and-explanation)
   - [Frontend](#frontend)
     - [Pages](#the-pages)
+- [Tests](#tests)
+  - [Postman](#postman-test)
+- [Upgrade possibilities](#upgrade-possibilities)
 
 ## About
 
@@ -20,7 +23,7 @@ This platform allows users to add and retrieve confidential information.
 Additionally, it offers the option to share this information via email, providing a way communicate securely.
 You can check out the site [here](https://your-secret-app.netlify.app). 
 I use only free solutions for hosting, so I recommend to clone the project from my GitHub 
-and try it out in a development environment as well if some features ar slow or doesn't work.
+and try it out in a development environment as well if some features are slow.
 
 ## Technologies
 
@@ -37,6 +40,7 @@ and try it out in a development environment as well if some features ar slow or 
 - Store secrets with a unique identifier 
 - Get the secrets with the unique identifier
 - Share the secret with an email.
+- Retrieve the secret with a random url.
 
 
 ## Setup guide
@@ -49,12 +53,7 @@ of choice or if you don't have one open it in terminal. I recommend to open the 
 #### dependencies
 - Python 3
 
-
-If you dnt have maven and OpenJDK on your computer first install OpenJDK after that you should install maven.
-If you ar not familiar with the process how to do this follow these guides:
-
-[OpedJDK install guide](https://openjdk.org/install/) <br>
-[Maven install guide](https://www.javatpoint.com/how-to-install-maven)
+If you don't have python install it first.
 
 
 After that open the **secret-api** folder in the **secret-server** folder. If your IDE didn't configure the project or you 
@@ -258,6 +257,39 @@ https://your-secret-app.netlify.app/contacts
 A page with my contacts.
 
 ---
+
+## Tests
+
+I wrote unit test for my secret service class because that class contained most of the logic 
+using pythons unittest library. I also wrote postman tests to check te api responds in the proper format 
+based on the request accept header. I included the postman requests for these in the test folder next the unit tests.
+
+### Postman test
+
+```javascript
+pm.test("Response Body is XML", function () {
+    pm.response.to.have.header("Content-Type", "application/xml")
+});
+```
+Test for xml response.
+
+___
+
+```javascript
+pm.test("response body is json", function () {
+  pm.response.to.have.jsonBody();
+});
+
+```
+Test for json response.
+
+## Upgrade possibilities
+- Refine frontend, add some animations
+- Work on a more convenient to get the id for his secret
+- More refined secret sharing.
+
+___
+
 If you run into any problems please contact me on **nick.balazs18@gmail.com**
 
 
