@@ -2,6 +2,7 @@ import uuid
 from db_operations import db_provider
 from models.Secret import Secret
 from datetime import datetime, timedelta
+import time
 import pytz
 
 
@@ -36,8 +37,12 @@ class SecretService:
 
     def is_secret_not_expired(self, expire_date):
         if expire_date is not None:
-            if pytz.utc.localize(expire_date) < datetime.now(pytz.utc):
+            expire_timestamp = int(expire_date.timestamp())
+            current_timestamp = int(time.time())
+            if expire_timestamp < current_timestamp:
                 return False
+            else:
+                return True
         else:
             return True
 
