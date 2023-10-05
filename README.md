@@ -247,6 +247,7 @@ https://your-secret-app.netlify.app/share-secret/:sharedID
 This page receives through the url a unique share id. With this id it fetches the related secret from the api and presents it to the user. 
 If the secret is expired the secret expired message appears in the place of the secret. If some problems occur the page gives an alert message 
 and logs the error in the console. This page can't be accessed through the site. 
+
 ---
 
 **The contact page:**
